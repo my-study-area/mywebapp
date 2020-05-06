@@ -33,6 +33,7 @@
         <configuration>
           <port>9090</port>
           <path>/</path>
+          <contextFile>src/main/webapp/META-INF/context.xml</contextFile>
         </configuration>
       </plugin>
     </plugins>
