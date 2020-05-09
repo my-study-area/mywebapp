@@ -1,5 +1,7 @@
 package br.mywebapp.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import br.mywebapp.connection.ConnectionFactory;
@@ -24,4 +26,17 @@ public class CategoriaDao {
 		}
 		return categoria;
  	}
+	
+	public List<Categoria >findAll() {
+		EntityManager em = ConnectionFactory.getConnection();
+		List<Categoria> categorias = null;
+		try {
+			categorias = em.createQuery("from Categoria c").getResultList();
+		} catch (Exception e) {
+			System.err.println();
+		} finally {
+				em.close();
+		}
+		return categorias;
+	}
 }

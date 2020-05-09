@@ -45,5 +45,19 @@
         </div>
 
     </h:form>
+    <h:form id="formClienteTable">
+        <h:dataTable value="#{categoriaController.categorias}" var="categoria">
+            <h:column headerText="Id">
+                <h:outputText value="#{categoria.id}"></h:outputText>
+            </h:column>
+            <h:column headerText="Descricao">
+                <h:outputText value="#{categoria.descricao}"></h:outputText>
+            </h:column>
+            <h:column>
+                <h:commandLink value="Editar"/> &nbsp;
+                <h:commandLink value="Deletar"/>
+            </h:column>
+        </h:dataTable>
+    </h:form>
 </h:body>
 </html>
