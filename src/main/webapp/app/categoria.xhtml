@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Hello World</title>
+</h:head>
+<h:body>
+<div class="menu">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/app/categoria.xhtml">Categoria</a></li>
+    </ul>
+</div>
+<div class="title">Cadastro de Categoria</div>
+    <h:form id="formCliente">
+        <div>
+        <h:messages></h:messages>
+        </div>
+        <div>
+            <div>
+                <h:outputLabel for="id">ID</h:outputLabel>
+            </div>
+            <div>
+                <h:inputText id="id" value="#{categoriaController.categoria.id}"  disabled="true"></h:inputText>
+                <h:inputHidden value="#{categoriaController.categoria.id}" />
+            </div>
+        </div>
+        <div>
+            <div>
+                <h:outputLabel for="descricao">Descrição</h:outputLabel>
+            </div>
+            <div>
+                <h:inputText id="descricao" value="#{categoriaController.categoria.descricao}" 
+                required="true" 
+                requiredMessage="Preencha o campo descrição"
+                ></h:inputText>
+            </div>
+        </div>
+        <div>
+            <p>
+                <h:commandButton value="Salvar" action="#{categoriaController.save}"></h:commandButton>
+            </p>
+        </div>
+
+    </h:form>
+    <h:form id="formClienteTable">
+        <h:dataTable value="#{categoriaController.categorias}" var="categoria">
+            <h:column headerText="Id">
+                <h:outputText value="#{categoria.id}"></h:outputText>
+            </h:column>
+            <h:column headerText="Descricao">
+                <h:outputText value="#{categoria.descricao}"></h:outputText>
+            </h:column>
+            <h:column>
+                <h:commandLink value="Editar" action="#{categoriaController.edit(categoria)}" /> &nbsp;
+                <h:commandLink value="Deletar" onclick="if (! confirm('Really delete this?') ) { return false;}; return true; "
+                               action="#{categoriaController.remove(categoria.id)}"/>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+</html>
