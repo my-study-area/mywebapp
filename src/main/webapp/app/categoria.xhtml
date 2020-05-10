@@ -25,6 +25,7 @@
             </div>
             <div>
                 <h:inputText id="id" value="#{categoriaController.categoria.id}"  disabled="true"></h:inputText>
+                <h:inputHidden value="#{categoriaController.categoria.id}" />
             </div>
         </div>
         <div>
@@ -54,7 +55,7 @@
                 <h:outputText value="#{categoria.descricao}"></h:outputText>
             </h:column>
             <h:column>
-                <h:commandLink value="Editar"/> &nbsp;
+                <h:commandLink value="Editar" action="#{categoriaController.edit(categoria)}" /> &nbsp;
                 <h:commandLink value="Deletar" onclick="if (! confirm('Really delete this?') ) { return false;}; return true; "
                                action="#{categoriaController.remove(categoria.id)}"/>
             </h:column>

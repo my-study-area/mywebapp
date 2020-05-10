@@ -48,6 +48,12 @@ public class CategoriaController implements Serializable{
 		return null;
 	}
 
+	public String edit(Categoria categoria) {
+		this.categoria.setId(categoria.getId());
+		this.categoria.setDescricao(categoria.getDescricao());
+		return null;
+	}
+
 	public CategoriaDao getDao() {
 		return dao;
 	}
