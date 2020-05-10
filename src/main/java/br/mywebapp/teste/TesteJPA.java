@@ -1,5 +1,7 @@
 package br.mywebapp.teste;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -18,17 +20,22 @@ public class TesteJPA {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("mywebappPU");
 		EntityManager em = emf.createEntityManager();
 
-		try {
-			em.getTransaction().begin();
-			em.persist(categoria);
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			em.getTransaction().rollback();
-			System.err.println(e);
-		} finally {
-			em.close();
+//		try {
+//			em.getTransaction().begin();
+//			em.persist(categoria);
+//			em.getTransaction().commit();
+//		} catch (Exception e) {
+//			em.getTransaction().rollback();
+//			System.err.println(e);
+//		} finally {
+//			em.close();
+//		}
+
+		List<Categoria> categorias = em.createQuery("from Categoria c").getResultList();
+
+		for (Categoria c : categorias) {
+			System.out.println(c);
 		}
-		
 		emf.close();
 		
 		
