@@ -43,8 +43,16 @@ public class CategoriaController implements Serializable{
 		return categorias;
 	}
 
-	public String deleteAction(Categoria categoria) {
-		getCategorias().remove(categoria);
+	public String remove(Integer id) {
+		dao.remove(id);
 		return null;
+	}
+
+	public CategoriaDao getDao() {
+		return dao;
+	}
+
+	public void setDao(CategoriaDao dao) {
+		this.dao = dao;
 	}
 }

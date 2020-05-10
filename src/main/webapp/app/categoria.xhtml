@@ -55,7 +55,8 @@
             </h:column>
             <h:column>
                 <h:commandLink value="Editar"/> &nbsp;
-                <h:commandLink value="Deletar"/>
+                <h:commandLink value="Deletar" onclick="if (! confirm('Really delete this?') ) { return false;}; return true; "
+                               action="#{categoriaController.remove(categoria.id)}"/>
             </h:column>
         </h:dataTable>
     </h:form>
