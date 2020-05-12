@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Hello World</title>
+</h:head>
+<h:body>
+<div class="menu">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/app/categoria.xhtml">Categoria</a></li>
+        <li><a href="/app/produto.xhtml">Produto</a></li>
+    </ul>
+</div>
+<div class="title">Cadastro de Produto</div>
+    <h:form id="formProduto">
+        <div>
+        <h:messages></h:messages>
+        </div>
+        <div>
+            <div>
+                <h:outputLabel for="id">ID</h:outputLabel>
+            </div>
+            <div>
+                <h:inputText id="id"  disabled="true"></h:inputText>
+                <h:inputHidden/>
+            </div>
+        </div>
+        <div>
+            <div>
+                <h:outputLabel for="descricao">Descrição</h:outputLabel>
+            </div>
+            <div>
+                <h:inputText id="descricao"
+                required="true" 
+                requiredMessage="Preencha o campo descrição"
+                ></h:inputText>
+            </div>
+        </div>
+        <div>
+            <p>
+                <h:commandButton value="Salvar"></h:commandButton>
+            </p>
+        </div>
+
+    </h:form>
+</h:body>
+</html>
