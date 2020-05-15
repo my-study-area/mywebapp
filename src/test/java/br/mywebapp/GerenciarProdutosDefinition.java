@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import br.mywebapp.model.Produto;
 import io.cucumber.core.backend.StepDefinition;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -19,6 +20,7 @@ import io.cucumber.java.pt.Quando;
 public class GerenciarProdutosDefinition {
 	WebDriver driver = null;
 	static final Logger LOGGER = Logger.getLogger(StepDefinition.class.getName());
+	private Produto produto = new Produto();
 
 	@Before
 	public void beforeScenario(){
@@ -48,6 +50,46 @@ public class GerenciarProdutosDefinition {
 		Assert.assertEquals(expectedText, text );
 	}
 
+	@Quando("preencher o campo descrição com {string}")
+	public void preencher_o_campo_descrição_com(String text) {
+		WebElement descricao = driver.findElement(By.id("formProduto:descricao"));
+		produto.setDescricao(text);
+		descricao.sendKeys(produto.getDescricao());
+	}
+
+	@Quando("prencher o campo quantidade com {string}")
+	public void prencher_o_campo_quantidade_com(String qtd) {
+		WebElement quantidade = driver.findElement(By.id("formProduto:quantidade"));
+		produto.setQtd(Integer.valueOf(qtd));
+		quantidade.sendKeys(produto.getQtd().toString());
+	}
+
+	@Quando("preencher o campo valor com {string}")
+	public void preencher_o_campo_valor_com(String val) {
+		WebElement valor = driver.findElement(By.id("formProduto:valor"));
+		produto.setValor(Double.valueOf(val));
+		valor.sendKeys(produto.getValor().toString());
+	}
+
+	@Quando("clicar no botão salvar")
+	public void clicar_no_botão_salvar() {
+		WebElement botao = driver.findElement(By.cssSelector("input[type=submit]"));
+		botao.click();
+	}
+
+	@Então("eu devo ver a mensagem {string}")
+	public void eu_devo_ver_a_mesagem(String expectedMessage) {
+		String message = driver.findElement(By.cssSelector("#formProduto ul > li")).getText();
+		Assert.assertTrue(driver.getPageSource().contains(message));
+	}
+
+	@Então("devo ver as informações na lista de produtos")
+	public void devo_ver_as_informacoes_na_lista_de_produtos() {
+		Assert.assertTrue(driver.getPageSource().contains(produto.getDescricao()));
+		Assert.assertTrue(driver.getPageSource().contains(produto.getQtd().toString()));
+		Assert.assertTrue(driver.getPageSource().contains(produto.getValor().toString()));
+	}
+
 	public WebDriver getDriver() {
 		WebDriver driver = null;
 		System.setProperty("webdriver.gecko.driver","/home/adriano/workspace-neon-2/geckodriver");
@@ -61,4 +103,3 @@ public class GerenciarProdutosDefinition {
 		return driver;
 	}
 }
-
