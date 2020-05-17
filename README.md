@@ -14,7 +14,7 @@ cd mywebapp
 
 - inicie o servidor
 ```
-mvn clean tomcat7:run
+mvn clean tomcat7:run -Dorg.apache.el.parser.COERCE_TO_ZERO=false
 ```
 - acesse no navegador
 [http://localhost:9090/](http://localhost:9090/)
@@ -23,7 +23,7 @@ Obs: para parar o servidor pressione `ctrl + c`
 ## Configurando o projeto no eclipse
 Com o projeto importado no eclipse realize os seguintes passos:
 - botão direito do mouse em cima do projeto > Run as > Maven build
-- na janela que abrir no campo ***Goals*** digite: `mvn clean tomcat7:run` e pressione o botão ***Run***
+- na janela que abrir no campo ***Goals*** digite: `mvn clean tomcat7:run -Dorg.apache.el.parser.COERCE_TO_ZERO=false` e pressione o botão ***Run***
 
 ## Iniciando servidor via docker
 Esse passo é somente uma opção a mais caso o computador não tenha o maven instalado. O processo de desenvolvimento ficará um pouco mais complexo devido a problemas de permissão de arquivos, instalação de dependências e consultar os logs no terminal.

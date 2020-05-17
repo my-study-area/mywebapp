@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Hello World</title>
+</h:head>
+<h:body>
+         <div class="menu">
+             <ul>
+		        <li><a href="/">Home</a></li>
+		        <li><a href="/app/categoria.xhtml">Categoria</a></li>
+		        <li><a href="/app/produto.xhtml">Produto</a></li>
+             </ul>
+         </div>
+         <div class="title">
+             Cadastro de Produto
+         </div>
+         <h:form id="formProduto">
+             <div>
+                 <h:messages></h:messages>
+             </div>
+             <div class="form-control">
+                <div>
+                    <h:outputText value="Id" />
+                </div>
+                 <div>
+                     <h:inputText value="#{produtoController.produto.id}" disabled="true"/>
+                     <h:inputHidden value="#{produtoController.produto.id}" />
+                 </div>
+             </div>
+             <div class="form-control">
+                <div>
+                    <h:outputText value="Descrição" />
+                </div>
+                 <div>
+                     <h:inputText value="#{produtoController.produto.descricao}"
+                                  id="descricao"
+                                  required="true"
+                                  requiredMessage="Preencha o campo Descrição"/>
+                 </div>
+             </div>
+             <div class="form-control">
+                <div>
+                    <h:outputText value="Quantidade" />
+                </div>
+                 <div>
+                     <h:inputText value="#{produtoController.produto.qtd}"
+                                  id="quantidade"
+                                  required="true"
+                                  requiredMessage="Preencha o campo Quantidade"/>
+                 </div>
+             </div>
+             <div class="form-control">
+                <div>
+                    <h:outputText value="Valor" />
+                </div>
+                 <div>
+                     <h:inputText value="#{produtoController.produto.valor}"
+                                  id="valor"
+                                  required="true"
+                                  requiredMessage="Preencha o campo Valor"/>
+                 </div>
+             </div>
+             <div class="form-control">
+                <div>
+                    <h:outputText value="Catgoria" />
+                </div>
+                 <div>
+                     <h:selectOneMenu value="#{produtoController.produto.categoria}"
+                                      id="categoria"
+                                      required="true"
+                                      requiredMessage="Selecione uma Categoria"
+                                      converter="categoriaConverter">
+                         <f:selectItem itemLabel="Selecione uma categoria" />
+                         <f:selectItems value="#{produtoController.categorias}" 
+                                        var="categoria" 
+                                        itemLabel="#{categoria.descricao}"
+                                        itemValue="#{categoria}">
+                         </f:selectItems>
+                     </h:selectOneMenu>
+                 </div>
+             </div>
+             <div class="form-control">
+                 <div>
+                     <p>
+                         <h:commandButton value="Salvar" action="#{produtoController.save}" />
+                     </p>
+                 </div>
+             </div>
+         </h:form>
+         <h:form id="tableProduto">
+            <h:dataTable value="#{produtoController.produtos}" var="produto">
+                <h:column>
+                    <f:facet name="header"> 
+                        <h:outputText value="ID" /> 
+                    </f:facet> 
+                    <h:outputText value="#{produto.id}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> 
+                        <h:outputText value="Descrição" /> 
+                    </f:facet> 
+                    <h:outputText value="#{produto.descricao}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> 
+                        <h:outputText value="Quantidade" /> 
+                    </f:facet> 
+                    <h:outputText value="#{produto.qtd}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> 
+                        <h:outputText value="Valor" /> 
+                    </f:facet> 
+                    <h:outputText value="#{produto.valor}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> 
+                        <h:outputText value="Categoria" /> 
+                    </f:facet> 
+                    <h:outputText value="#{produto.categoria.descricao}"></h:outputText>
+                </h:column>
+            </h:dataTable>
+         </h:form>
+     </h:body>
+</html>
