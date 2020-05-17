@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Produto implements Serializable {
@@ -17,6 +18,8 @@ public class Produto implements Serializable {
 	private String descricao;
 	private Integer qtd;
 	private Double valor;
+	@ManyToOne
+	private Categoria categoria;
 
 	public Integer getId() {
 		return id;
@@ -49,8 +52,15 @@ public class Produto implements Serializable {
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-
 	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -78,7 +88,7 @@ public class Produto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Produto [id=" + id + ", descricao=" + descricao + ", qtd=" + qtd + ", valor=" + valor + "]";
+		return "Produto [id=" + id + ", descricao=" + descricao + ", qtd=" + qtd + ", valor=" + valor + ", categoria=" + categoria.getDescricao() + "]";
 	}
 
 

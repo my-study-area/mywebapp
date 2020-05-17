@@ -3,6 +3,7 @@ package br.mywebapp;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
+import org.openqa.selenium.support.ui.Select;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -71,6 +72,14 @@ public class GerenciarProdutosDefinition {
 		valor.sendKeys(produto.getValor().toString());
 	}
 
+	@Quando("selecionar a categoria {string}")
+	public void selecionar_a_categoria(String categoria) {
+		 WebElement selectElement =  driver.findElement(By.id("formProduto:categoria"));
+		 Select selectObject = new Select(selectElement);
+		 selectObject.selectByVisibleText(categoria);
+
+	}
+
 	@Quando("clicar no botão salvar")
 	public void clicar_no_botão_salvar() {
 		WebElement botao = driver.findElement(By.cssSelector("input[type=submit]"));
@@ -80,7 +89,7 @@ public class GerenciarProdutosDefinition {
 	@Então("eu devo ver a mensagem {string}")
 	public void eu_devo_ver_a_mesagem(String expectedMessage) {
 		String message = driver.findElement(By.cssSelector("#formProduto ul > li")).getText();
-		Assert.assertTrue(driver.getPageSource().contains(message));
+		Assert.assertEquals(expectedMessage, message);
 	}
 
 	@Então("devo ver as informações na lista de produtos")

@@ -65,6 +65,25 @@
                  </div>
              </div>
              <div class="form-control">
+                <div>
+                    <h:outputText value="Catgoria" />
+                </div>
+                 <div>
+                     <h:selectOneMenu value="#{produtoController.produto.categoria}"
+                                      id="categoria"
+                                      required="true"
+                                      requiredMessage="Selecione uma Categoria"
+                                      converter="categoriaConverter">
+                         <f:selectItem itemLabel="Selecione uma categoria" />
+                         <f:selectItems value="#{produtoController.categorias}" 
+                                        var="categoria" 
+                                        itemLabel="#{categoria.descricao}"
+                                        itemValue="#{categoria}">
+                         </f:selectItems>
+                     </h:selectOneMenu>
+                 </div>
+             </div>
+             <div class="form-control">
                  <div>
                      <p>
                          <h:commandButton value="Salvar" action="#{produtoController.save}" />
@@ -97,6 +116,12 @@
                         <h:outputText value="Valor" /> 
                     </f:facet> 
                     <h:outputText value="#{produto.valor}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> 
+                        <h:outputText value="Categoria" /> 
+                    </f:facet> 
+                    <h:outputText value="#{produto.categoria.descricao}"></h:outputText>
                 </h:column>
             </h:dataTable>
          </h:form>
